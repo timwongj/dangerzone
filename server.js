@@ -19,12 +19,6 @@
 
   var app = express();
 
-  //app.use(morgan('dev'));
-  //app.use(bodyParser.json());
-  //app.use(bodyParser.urlencoded({extended: true}));
-  //app.use(multer());
-  //app.use(cookieParser());
-
   app.use('/app', express.static(__dirname + '/app'));
   app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
