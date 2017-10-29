@@ -14,18 +14,8 @@
   var mongoose = require('mongoose');
   var passport = require('passport');
   var config = require('config');
-  //var ua = require('universal-analytics');
 
-  //var fbAuth = require('./app/middleware/authentication');
-  //var visitor = ua(config.get('universal-analytics.account-ID'));
-  //visitor.pageview("/", config.get('universal-analytics.name'), config.get('universal-analytics.url')).send();
-
-  //var authRouter = require('./app/routes/auth');
-  //var resultsRouter = require('./app/routes/results');
-  //var scramblesRouter = require('./app/routes/scrambles');
-  //var userRouter = require('./app/routes/user');
-  //var usersRouter = require('./app/routes/users');
-  //var weeksRouter = require('./app/routes/weeks');
+  var crimesRouter = require('./app/routes/crimes');
 
   var app = express();
 
@@ -34,38 +24,13 @@
   //app.use(bodyParser.urlencoded({extended: true}));
   //app.use(multer());
   //app.use(cookieParser());
-  //app.use(session({
-  //  store: new RedisStore({
-  //    host: config.get('redisStore.host'),
-  //    port: config.get('redisStore.port'),
-  //    pass: config.get('redisStore.pass')
-  //  }),
-  //  secret: config.get('express.session.secret'),
-  //  resave: false,
-  //  saveUninitialized: false
-  //}));
-  //app.use(passport.initialize());
-  //app.use(passport.session());
 
   app.use('/app', express.static(__dirname + '/app'));
   app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-  //app.use('/auth', authRouter);
-  //app.use('/results', resultsRouter);
-  //app.use('/scrambles', scramblesRouter);
-  //app.use('/user', userRouter);
-  //app.use('/users', usersRouter);
-  //app.use('/weeks', weeksRouter);
-  //
-  //passport.serializeUser(function(user, done) {
-  //  done(null, user);
-  //});
-  //
-  //passport.deserializeUser(function(user, done) {
-  //  done(null, user);
-  //});
-  //
-  //mongoose.connect(config.get('mongo.connectionString'));
+  app.use('/crimes', crimesRouter);
+
+  mongoose.connect(config.get('mongo.connectionString'));
 
   app.get('/', function(req, res) {
     res.sendfile('./app/public/index.html');

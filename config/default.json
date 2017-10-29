@@ -10,16 +10,5 @@
   },
   "mongo": {
     "connectionString":"mongodb://localhost/dangerzone"
-  },
-  "redisStore": {
-    "host": "localhost",
-    "port": "6379",
-    "pass": ""
-  },
-  "passport": {
-    "facebook": {
-      "clientID":"uh oh riley time",
-      "clientSecret":"don't try to be too clever!"
-    }
   }
 }

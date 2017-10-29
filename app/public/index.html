@@ -7,14 +7,35 @@
   <link rel="stylesheet" type="text/css" href="/app/public/style.css">
 
   <!--SCRIPTS  -->
-  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular/angular.min.js"></script>
+  <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
   <script src="/app/public/app.js"></script>
 
   <!--<link rel="shortcut icon" type="image/x-icon" href="/app/public/assets/img/logo.png"/>-->
   <title>Danger Zone</title>
 </head>
 <body ng-app="dangerZoneApp" ng-controller="DangerZoneController">
-<h1>{{title}}</h1>
-<p>{{message}}</p>
+<div class="container">
+  <h3>Top 50 Recent Crimes Near You</h3>
+  <p ng-if="!loaded">Determining Geolocation...</p>
+  <table class="table table-bordered" ng-if="loaded">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Date</td>
+        <td>Location</td>
+        <td>Offense</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(index, crime) in crimes">
+        <td>{{index + 1}}</td>
+        <td>{{crime.OCCURRED_ON_DATE}}</td>
+        <td>{{crime.Location}}</td>
+        <td>{{crime.OFFENSE_DESCRIPTION}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
