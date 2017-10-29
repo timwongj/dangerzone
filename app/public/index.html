@@ -35,6 +35,7 @@
     </div>
   </div>
   <p ng-if="!loaded">Determining Geolocation...</p>
+  <h5 ng-if="loaded && safetyRating">Safety Rating: {{safetyRating}}</h5>
   <div class="map">
     <iframe id="map" ng-if="loaded" width="100%" height="420" frameborder="0" scrolling="no" ng-src="{{mapLink}}"></iframe>
   </div>

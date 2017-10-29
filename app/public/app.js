@@ -10,7 +10,7 @@
       'https://maps.google.com/**']);
   });
 
-  app.controller('DangerZoneController', function($scope, $resource) {
+  app.controller('DangerZoneController', function($scope, $resource, $http) {
 
     var Crimes = $resource('/crimes');
     $scope.inputType = 'auto';
@@ -32,7 +32,15 @@
       $scope.crimes = Crimes.query({ lat: lat, long: long }, function() {
         $scope.loaded = true;
       });
-    }
+      $http.get('https://apis.solarialabs.com/shine/v1/total-home-scores/reports', {
+        params: {
+          apikey: '7q4owDuo4dGQLG796GGkDIP3eeCzS5vo',
+          lat: lat,
+          lon: long
+        }}).then(function(response) {
+        $scope.safetyRating = response.data.totalHomeScores.safety.value.toFixed(2);
+      });
+    };
 
   });
 
