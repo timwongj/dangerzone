@@ -18,6 +18,9 @@
 <div class="container">
   <h3>Top 50 Recent Crimes Near You</h3>
   <p ng-if="!loaded">Determining Geolocation...</p>
+  <div class="map">
+    <iframe ng-if="loaded" width="100%" height="420" frameborder="0" scrolling="no" ng-src="{{mapLink}}"></iframe>
+  </div>
   <table class="table table-bordered" ng-if="loaded">
     <thead>
       <tr>
