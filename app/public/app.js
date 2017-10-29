@@ -10,7 +10,7 @@
       'https://maps.google.com/**']);
   });
 
-  app.controller('DangerZoneController', function($scope, $resource, $sce) {
+  app.controller('DangerZoneController', function($scope, $resource) {
 
     var Crimes = $resource('/crimes');
     $scope.inputType = 'auto';
@@ -18,8 +18,8 @@
     $scope.loaded = false;
 
     navigator.geolocation.getCurrentPosition(function(pos) {
-      $scope.lat = parseFloat(pos.coords.latitude.toFixed(6));
-      $scope.long = parseFloat(pos.coords.longitude.toFixed(6));
+      $scope.lat = parseFloat(pos.coords.latitude.toFixed(4));
+      $scope.long = parseFloat(pos.coords.longitude.toFixed(4));
       $scope.search($scope.lat, $scope.long, false);
     }, function() {}, {});
 
@@ -28,8 +28,6 @@
       if (refresh) {
         var iframe = document.getElementById('map');
         iframe.src = iframe.src;
-        lat = lat ? $scope.lat : lat;
-        long = long ? $scope.long : long;
       }
       $scope.crimes = Crimes.query({ lat: lat, long: long }, function() {
         $scope.loaded = true;

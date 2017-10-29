@@ -16,21 +16,21 @@
 </head>
 <body ng-app="dangerZoneApp" ng-controller="DangerZoneController">
 <div class="container">
-  <h3>Top 50 Recent Crimes Near You</h3>
+  <h3>Crimes in Boston</h3>
   <div class="row" ng-if="loaded">
-    <div class="col-sm-5">
+    <div class="col-xs-5">
       <div class="input-group">
-        <span class="input-group-addon">Latitude</span>
+        <span class="input-group-addon">Lat</span>
         <input type="text" step="0.01" class="form-control" placeholder="{{lat}}" ng-model="lat">
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-xs-5">
       <div class="input-group">
-        <span class="input-group-addon">Longitude</span>
+        <span class="input-group-addon">Long</span>
         <input type="text" step="0.01" class="form-control" placeholder="{{long}}" ng-model="long">
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-xs-2">
       <button type="button" class="btn btn-default" ng-click="search(lat, long, true)">Search</button>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div class="map">
     <iframe id="map" ng-if="loaded" width="100%" height="420" frameborder="0" scrolling="no" ng-src="{{mapLink}}"></iframe>
   </div>
-  <table class="table table-bordered" ng-if="loaded">
+  <table class="table table-bordered table-condensed" ng-if="loaded">
     <thead>
       <tr>
         <td>#</td>
